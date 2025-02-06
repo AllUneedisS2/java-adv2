@@ -42,19 +42,19 @@ public class MemberConsoleMain {
     }
 
     private static void registerMember(Scanner scanner) {
-        System.out.print("ID 입력: ");
+        System.out.print("ID 입력 : ");
         String id = scanner.nextLine();
 
-        System.out.print("Name 입력: ");
+        System.out.print("Name 입력 : ");
         String name = scanner.nextLine();
 
-        System.out.print("Age 입력: ");
+        System.out.print("Age 입력 : ");
         int age = scanner.nextInt();
         scanner.nextLine(); // newline 제거
 
         Member newMember = new Member(id, name, age);
         repository.add(newMember);
-        System.out.println("회원이 성공적으로 등록되었습니다.");
+        System.out.println("회원이 성공적으로 등록되었습니다");
     }
 
     private static void displayMembers() {
