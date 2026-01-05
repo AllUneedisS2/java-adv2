@@ -6,7 +6,5 @@ import java.lang.annotation.*;
 @Target(ElementType.METHOD)
 @Documented
 public @interface Mapping {
-
     String value();
-    
 }
