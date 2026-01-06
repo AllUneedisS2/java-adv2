@@ -23,27 +23,28 @@ public class HttpServerV1 {
         log("서버 시작 port: " + port);
 
         while (true) {
-            Socket socket = serverSocket.accept();
+            Socket socket = serverSocket.accept(); // 클라이언트 연결 대기
             process(socket);
         }
     }
 
     private void process(Socket socket) throws IOException {
-        try (socket;
-             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), UTF_8));
-             PrintWriter writer = new PrintWriter(socket.getOutputStream(), false, UTF_8)) {
+        try (
+            socket;
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream(), UTF_8));
+            PrintWriter writer = new PrintWriter(socket.getOutputStream(), false, UTF_8)) {
 
-            String requestString = requestToString(reader);
-            if (requestString.contains("/favicon.ico")) {
+            String requestString = requestToString(reader); // 클라이언트 요청 정보 읽기
+            if (requestString.contains("/favicon.ico")) { // favicon 요청 무시
                 log("favicon 요청");
                 return;
             }
             log("HTTP 요청 정보 출력");
-            System.out.println(requestString);
+            System.out.println(requestString); // 콘솔에 요청 정보 출력
 
             log("HTTP 응답 생성중...");
-            sleep(5000);
-            responseToClient(writer);
+            sleep(1000);
+            responseToClient(writer); // 클라이언트에 응답 정보 전달
             log("HTTP 응답 전달 완료");
         }
     }
